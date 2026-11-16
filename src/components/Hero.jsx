@@ -24,7 +24,7 @@ export default function Hero({ onBuscar }) {
   return (
     <>
       <section className="hero">
-        <Foto className="hero__fondo" src={portada.fotos[0]} alt="" fetchpriority="high" loading="eager" />
+        <Foto className="hero__fondo" src={portada?.fotos?.[0]} alt="" fetchpriority="high" loading="eager" />
         <VideoPortada />
         <div className="hero__velo" aria-hidden="true" />
         <div className="hero__contenido">

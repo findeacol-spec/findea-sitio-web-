@@ -1,7 +1,9 @@
 import { FINCAS } from './fincas.js'
 
 // Carga las fincas registradas en el panel administrativo (Supabase).
-// Si todavía no hay fincas registradas o no hay conexión, se quedan las de ejemplo.
+// Con la conexión configurada se muestran SOLO las fincas reales publicadas
+// (las de ejemplo se quitan). Sin conexión configurada (.env vacío), se ven
+// las de ejemplo, útil para diseñar.
 const URL = import.meta.env.VITE_SUPABASE_URL
 const LLAVE = import.meta.env.VITE_SUPABASE_KEY
 
@@ -31,6 +33,7 @@ function convertir(f) {
 
 export async function cargarFincasRemotas() {
   if (!URL || !LLAVE) return false
+  FINCAS.splice(0, FINCAS.length) // nada de fincas de ejemplo en la página real
   try {
     const control = new AbortController()
     const espera = setTimeout(() => control.abort(), 5000)
@@ -41,7 +44,7 @@ export async function cargarFincasRemotas() {
     clearTimeout(espera)
     if (!res.ok) return false
     const datos = await res.json()
-    if (!Array.isArray(datos) || datos.length === 0) return false
+    if (!Array.isArray(datos)) return false
     FINCAS.splice(0, FINCAS.length, ...datos.map(convertir))
     return true
   } catch {
