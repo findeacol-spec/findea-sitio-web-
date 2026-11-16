@@ -1,0 +1,11 @@
+Videos de "Descubre las experiencias del Meta"
+
+Nombres exactos (horizontal 1920x1080 y vertical 1080x1920, 8 a 15 segundos, sin letras encima):
+  cabalgatas.mp4   cabalgatas-movil.mp4
+  naturaleza.mp4   naturaleza-movil.mp4
+  gastronomia.mp4  gastronomia-movil.mp4
+  rios.mp4         rios-movil.mp4
+  cultura.mp4      cultura-movil.mp4
+
+Si no hay version -movil se usa la horizontal. Mientras no existan, se ven videos de prueba.
+Lo mejor es mandarselos a Claude para que los comprima antes de ponerlos aqui.

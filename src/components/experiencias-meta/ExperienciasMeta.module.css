@@ -1,0 +1,435 @@
+/* =====================================================================
+   Descubre las experiencias del Meta
+   Estilos encapsulados (CSS Modules): no afectan ninguna otra sección.
+   Usa los colores y tipografías globales de la página (variables :root).
+   ===================================================================== */
+
+.seccion {
+  position: relative;
+  background: var(--niebla);
+  color: #fff;
+}
+
+.escenario {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ---------- Fondo y mico ---------- */
+.fondo {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 80% at 50% 38%, #24493a 0%, var(--monte) 38%, var(--monte-osc) 72%, #07120d 100%);
+}
+
+.capaMico {
+  position: absolute;
+  inset: 0;
+}
+
+.mico {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 46%;
+  will-change: transform, filter;
+}
+
+.micoMedio {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Bordes difuminados: el video se funde con el verde, sin marcos */
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 46%, #000 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 46%, #000 45%, transparent 100%);
+}
+
+/* Niebla y viñeta: integra el video del mico con el verde FINDEA */
+.niebla {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(75% 65% at 50% 46%, transparent 35%, rgba(7, 18, 13, 0.55) 75%, rgba(7, 18, 13, 0.92) 100%),
+    linear-gradient(180deg, rgba(15, 35, 26, 0.55) 0%, transparent 22%, transparent 70%, rgba(7, 18, 13, 0.75) 100%);
+  mix-blend-mode: normal;
+}
+
+/* ---------- Capítulos (videos) ---------- */
+.capa {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  transform-origin: 50% 50%;
+  will-change: transform, clip-path;
+}
+
+.medio {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.respaldo {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(90% 70% at 30% 30%, var(--tono-a), transparent 70%),
+    radial-gradient(80% 80% at 80% 90%, var(--tono-a), transparent 65%),
+    var(--tono-b);
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.video[data-listo] {
+  opacity: 1;
+}
+
+/* Video vertical en computador: foto difuminada de fondo y el video en un
+   panel a la derecha, para no recortarlo ni estirarlo */
+.fondoBorroso {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  height: 112%;
+  object-fit: cover;
+  filter: blur(36px) saturate(1.15) brightness(0.55);
+}
+
+.panelVertical {
+  position: absolute;
+  top: 50%;
+  right: clamp(24px, 8vw, 140px);
+  height: min(80%, 760px);
+  aspect-ratio: 9 / 16;
+  transform: translateY(-50%);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+/* Foto fija mientras carga el video */
+.poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Nombre de cada experiencia dentro de su tarjeta (solo al inicio) */
+.etiqueta {
+  position: absolute;
+  margin: 0;
+  padding: 0 14px;
+  transform: translateY(-100%);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6), 0 4px 18px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+}
+
+/* Humo abajo a la izquierda para que los textos se lean sobre cualquier video */
+.sombra {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(0deg, rgba(5, 12, 9, 0.82) 0%, rgba(5, 12, 9, 0.35) 34%, transparent 58%),
+    linear-gradient(90deg, rgba(5, 12, 9, 0.45) 0%, transparent 55%);
+}
+
+.velo {
+  position: absolute;
+  inset: 0;
+  background: #050c09;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Destello dorado del revelado */
+.anillo {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 22vmin;
+  height: 22vmin;
+  margin: -11vmin 0 0 -11vmin;
+  border-radius: 50%;
+  border: 1px solid var(--guadua);
+  box-shadow: 0 0 40px rgba(184, 150, 62, 0.35), inset 0 0 30px rgba(184, 150, 62, 0.2);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Introducción ---------- */
+.intro {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: clamp(92px, 13vh, 150px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 6vw;
+  text-align: center;
+  pointer-events: none;
+}
+
+.titulo {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--titulo);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.6vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--monte);
+}
+
+.palabraCaja {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  vertical-align: top;
+}
+
+.palabra {
+  display: inline-block;
+  transform-origin: 50% 100%;
+}
+
+.bajada {
+  margin: 0.9rem 0 0;
+  max-width: 34ch;
+  font-family: var(--sans);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--gris);
+}
+
+.pista {
+  position: absolute;
+  left: 50%;
+  bottom: max(28px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--gris);
+  white-space: nowrap;
+}
+
+.pista svg {
+  animation: bajar 1.8s ease-in-out infinite;
+}
+
+@keyframes bajar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* ---------- Textos de cada experiencia ---------- */
+.texto {
+  position: absolute;
+  left: clamp(20px, 6vw, 96px);
+  right: clamp(20px, 6vw, 96px);
+  bottom: clamp(72px, 13vh, 140px);
+  max-width: 40rem;
+  pointer-events: none;
+}
+
+.capTitulo {
+  margin: 0;
+  font-family: var(--titulo);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 5.4vw, 4.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+}
+
+.capTexto {
+  margin: 0.9rem 0 0;
+  max-width: 36ch;
+  font-family: var(--sans);
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.boton {
+  pointer-events: auto;
+  margin-top: 1.6rem;
+  padding: 0.85rem 1.6rem;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--monte);
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.boton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+}
+
+.boton:focus-visible {
+  outline: 2px solid var(--guadua);
+  outline-offset: 3px;
+}
+
+/* ---------- Progreso ---------- */
+.progreso {
+  position: absolute;
+  left: clamp(20px, 6vw, 96px);
+  right: clamp(20px, 6vw, 96px);
+  bottom: clamp(28px, 5vh, 52px);
+  display: flex;
+  gap: 8px;
+  max-width: 40rem;
+  opacity: 0;
+}
+
+.sonido {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + 96px);
+  right: clamp(16px, 4vw, 48px);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.95rem 0.55rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(10, 20, 15, 0.42);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  opacity: 0;
+  transition: background 0.2s ease;
+}
+
+.sonido:hover {
+  background: rgba(10, 20, 15, 0.65);
+}
+
+.sonido:disabled {
+  pointer-events: none;
+}
+
+.sonido:focus-visible {
+  outline: 2px solid var(--guadua);
+  outline-offset: 3px;
+}
+
+.pasoBarra {
+  flex: 1;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.22);
+  overflow: hidden;
+}
+
+.relleno {
+  display: block;
+  height: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+/* ---------- Celular ---------- */
+@media (max-width: 767px) {
+  .texto {
+    bottom: 76px;
+  }
+
+  .etiqueta {
+    padding: 0 10px;
+    font-size: 0.78rem;
+  }
+
+  .sombra {
+    background: linear-gradient(0deg, rgba(5, 12, 9, 0.88) 0%, rgba(5, 12, 9, 0.4) 40%, transparent 65%);
+  }
+}
+
+/* ---------- Versión sin animación (reducir movimiento) ---------- */
+.seccionQuieta {
+  background: var(--monte-osc);
+  color: #fff;
+  padding: clamp(64px, 10vw, 120px) clamp(20px, 6vw, 96px);
+}
+
+.tituloQuieto {
+  margin: 0 0 2.5rem;
+  max-width: 16ch;
+  font-family: var(--titulo);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 1.05;
+}
+
+.listaQuieta {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.capituloQuieto {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.capaFija {
+  position: absolute;
+  inset: 0;
+}
+
+.textoQuieto {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+}
+
+@media (max-width: 767px) {
+  .capituloQuieto {
+    aspect-ratio: 4 / 5;
+  }
+}

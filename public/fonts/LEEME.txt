@@ -1,0 +1,10 @@
+Fuente del título: Luxia (Andrew Herndon)
+
+1. Descárgala:
+   - Versión gratis (solo uso personal): https://www.behance.net/gallery/32975197/Luxia-Free-Typeface
+   - Licencia web para un negocio: https://andrewherndon.gumroad.com/l/luxiaweb
+2. Del ZIP, toma el archivo "Semi-Bold Display" (.otf).
+3. Cópialo en esta carpeta (public/fonts/) y renómbralo a:  Luxia.otf
+4. Recarga la página. El título grande de la portada queda en Luxia.
+
+Mientras el archivo no esté, el título se ve con Tenor Sans (de Google Fonts), que es parecida.
